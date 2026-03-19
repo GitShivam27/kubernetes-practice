@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: flask-app-deployment
+  namespace: flask-app
+  labels:
+    app: flask-app-labels
+
+spec:
+  replicas: 5
+
+  selector:
+    matchLabels:
+      app: flask-app-labels
+
+  template:
+    metadata:
+      labels:
+        app: flask-app-labels
+
+    spec:
+      containers:
+        - name: flask-app
+          image: trainwithshubham/github-actions-app
+          ports:
+            - containerPort: 80
